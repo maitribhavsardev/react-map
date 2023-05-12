@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@esri/react-arcgis": "^5.2.0",
+    "esri-loader": "^2.16.0",
+    "esri-loader-hooks": "^0.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
