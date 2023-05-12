@@ -8,6 +8,7 @@ import {
   useMap,
   useGraphics,
 } from "esri-loader-hooks";
+import MapboxGL from "./MapBoxGL";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -25,7 +26,14 @@ function App() {
     <>
       <h1>React-arcgis</h1>
       <div style={{ height: 400 }} ref={ref} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       {/* <div style={{ height: 400 }} ref={reference} /> */}
+      <MapboxGL />
     </>
   );
 }
