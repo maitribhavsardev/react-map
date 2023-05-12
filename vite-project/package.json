@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@esri/react-arcgis": "^5.2.0",
+    "d3": "^7.8.4",
     "esri-loader": "^2.16.0",
     "esri-loader-hooks": "^0.4.0",
     "mapbox-gl": "^2.14.1",
