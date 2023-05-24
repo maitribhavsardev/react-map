@@ -5,7 +5,7 @@ import { AxisBottom } from "./AxisBottom";
 import { Bar } from "./Bar";
 
 const styles = {
-  position: "block",
+  position: "absolute",
   zIndex: 1000,
   backgroundColor: "white",
   top: "calc(100vh - 320px)",

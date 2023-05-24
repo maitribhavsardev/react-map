@@ -5,7 +5,7 @@ export const AxisBottom = ({
   chartWidth,
   types,
   tiltXLabels = false,
-  xAxisTitle = "title"
+  xAxisTitle = "title",
 }) => {
   return (
     <g>
@@ -18,12 +18,13 @@ export const AxisBottom = ({
           stroke="#000000"
         />
       </g>
-      {types.map(type => (
+      {types.map((type) => (
         <g
           className="tick"
           key={type}
-          transform={`translate(${xScale(type) +
-            xScale.bandwidth() / 2},${chartHeight})`}
+          transform={`translate(${
+            xScale(type) + xScale.bandwidth() / 2
+          },${chartHeight})`}
         >
           <line
             key={`line${type}`}
@@ -58,15 +59,19 @@ export const AxisBottom = ({
       ))}
       <g>
         <text
-          style={{ textAnchor: 'middle' }}
-          fontFamily='Arial, Helvetica, sans-serif'
-          fontSize={chartWidth * 0.030}
+          style={{ textAnchor: "middle" }}
+          fontFamily="Arial, Helvetica, sans-serif"
+          fontSize={chartWidth * 0.03}
           x={chartWidth / 2}
-          y={tiltXLabels ? chartHeight + (chartHeight * 0.35)  : chartHeight + (chartHeight * 0.17)}
-          >
+          y={
+            tiltXLabels
+              ? chartHeight + chartHeight * 0.35
+              : chartHeight + chartHeight * 0.17
+          }
+        >
           {xAxisTitle}
         </text>
       </g>
     </g>
-  )
-}
+  );
+};
