@@ -1,23 +1,18 @@
-import { useRef, useEffect, useState } from "react";
-import "./App.css";
-import {
-  useWebMap,
-  useFeatureTable,
-  useMap,
-  useGraphics,
-} from "esri-loader-hooks";
+import React, { useRef, useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
-import MapboxGL from "./MapBoxGL";
-// import { MapboxGLMap } from "./Map/MapboxGLMap";
+// import Legend from "./components/Legend";
 import Optionsfield from "./Optionsfield";
+import "./Map.css";
 import data from "./data.json";
 import { BarPlot } from "./BarPlot/BarPlot";
 import { color_breaks, oregon_county_pop_data } from "./Data/data";
 
+// mapboxgl.accessToken =
+//   'pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA'
 mapboxgl.accessToken =
   "pk.eyJ1Ijoid2lsbGNhcnRlciIsImEiOiJjamV4b2g3Z2ExOGF4MzFwN3R1dHJ3d2J4In0.Ti-hnuBH8W4bHn7k6GCpGw";
 
-function App() {
+const Map = () => {
   const [selectedId, setSelectedId] = useState(null);
   const [statefulMap, setStatefulMap] = useState(null);
 
@@ -138,56 +133,31 @@ function App() {
     });
   };
 
-  const [ref] = useWebMap("e691172598f04ea8881cd2a4adaa45ba");
-
   return (
-    <>
-      <h1>React-arcgis</h1>
-      <div style={{ height: 400 }} ref={ref} />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      {/* <div style={{ height: 400 }} ref={reference} /> */}
+    <div>
+      <div ref={mapContainerRef} className="map-container" />
+      {/* <Legend active={active} stops={active.stops} /> */}
+      <Optionsfield
+        options={options}
+        property={active.property}
+        changeState={changeState}
+      />
 
-      <MapboxGL />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <h1>Map Box Integration With D3</h1>
-      <div>
-        {" "}
-        <div>
-          {" "}
-          <div ref={mapContainerRef} className="map-container" />
-          {/* <Legend active={active} stops={active.stops} /> */}
-          <Optionsfield
-            options={options}
-            property={active.property}
-            changeState={changeState}
-          />
-          <BarPlot
-            data={oregon_county_pop_data()}
-            svgWidth={450}
-            svgHeight={275}
-            itemDelay={200}
-            onSelectItem={setSelectedId}
-            colorBreaks={color_breaks()}
-            highlightLineColor={{ rgba: [255, 102, 0, 1] }}
-            tiltXLabels={true}
-            visualizationTitle="Counties Population "
-            leftAxisTitle="Count"
-            bottomAxisTitle="County"
-          />
-        </div>{" "}
-      </div>
-    </>
+      <BarPlot
+        data={oregon_county_pop_data()}
+        svgWidth={450}
+        svgHeight={275}
+        itemDelay={200}
+        onSelectItem={setSelectedId}
+        colorBreaks={color_breaks()}
+        highlightLineColor={{ rgba: [255, 102, 0, 1] }}
+        tiltXLabels={true}
+        visualizationTitle="Counties Population "
+        leftAxisTitle="Count"
+        bottomAxisTitle="County"
+      />
+    </div>
   );
-}
+};
 
-export default App;
+export default Map;
